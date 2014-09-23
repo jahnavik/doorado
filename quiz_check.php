@@ -5,10 +5,19 @@ session_start();
 $email = $_SESSION['email_ses'];
 $role = $_SESSION['role_ses'];
 $qid=$_POST['q_id']; 
+$cid=$_POST['cid'];
+$sql1="SELECT * FROM users WHERE email='$email'";
+    $result1=mysql_query($sql1);
+    
+    
+    
+      $row=mysql_fetch_assoc($result1);
+      $sid=$row['id'];
 
 $query7="SELECT * FROM problem WHERE qid='$qid'";
 $result7=mysql_query($query7);
 $num_p=mysql_num_rows($result7);
+$max_score=0;
 $score=0;
 $i=0;
 while($i<$num_p)
@@ -78,10 +87,17 @@ video {
 
      
 <div id="main" class="card" style="height:100%" >
-<div class="half" style="margin-right:28px; position:relative;">
- <form action="quiz_check.php" method="post" style="position:relative; left:0%; width:30% ; padding:20px;">
+<div style="margin-right:28px; position:relative;">
+ <form action="quiz_check.php" method="post" style="position:relative; left:0%; width:100% ; padding:20px;">
     
-   
+  <table id="hor-zebra" summary="Datapass" style="width:100%">
+<th>#</th>
+<th>Question</th>
+<th>Correct Answer</th>
+<th>Your Answer</th>
+<th>Maximum Score</th>
+<th>Your score</th>
+</tr> 
       <?php
   $i=0;
 while ($i<$num_p)
@@ -89,46 +105,56 @@ while ($i<$num_p)
   $j=$i+1;
 $ques=mysql_result($result7,$i,"ques");
 $pid=mysql_result($result7,$i,"pid");
+
 $q='Q.'.$j.'  '.$ques;
 $pid=$qid.'Q'.$j;
 $ans=$_POST[$pid];
+$entered='Your Answer: '.$ans;
 $sql5="SELECT * FROM problem WHERE pid='$pid' ";
 $result5=mysql_query($sql5);
 
       $row5=mysql_fetch_assoc($result5);
       $ans_x=$row5['ans'];
-      
+      $answer='Correct Answer: '.$ans_x;
+  $score_t=mysql_result($result7,$i,"score");
+  $max_score=$max_score+$score_t;
       if($ans==$ans_x)
 {
-	$score++;
-	$flag='Correct';
+	
+  $score_x=mysql_result($result7,$i,"score");
+  $score=$score+$score_x;
+	
 }
 else {
-$flag='Incorrect';
+$score_x=0;
+
 
 
 }
 ?>
-             <fieldset id="inputs">
-                 <p> <?php echo $q;?></p> 
-                <input id="ans" name=<?php echo $pid;?> type="text"  class="form-control" placeholder=<?php echo $ans?>>
-                <p> <?php echo $flag;?><?p>
-            </fieldset>
-                     <div id=err style=" width: 300px; height: 10px; align : left; color: #C00; font-weight:normal;  line-height: 1; font: 14px/1.5em Verdana, Geneva, Arial, Helvetica, sans-serif;  ">
-             </div>
+<tr>
+<td><?php echo $j; ?></td>
+<td><?php echo $ques; ?></td>
+<td><?php echo $ans_x;?></td>
+<td><?php echo $ans;?></td>
+<td><?php echo $score_t;?></td>
+<td><?php echo $score_x;?></td>
+</tr>
       <?php 
  $i++;
 }
+$total_score='Total Score= '.$score;
+$query1="INSERT INTO scores(sid,cid,qid,score) VALUES ('$sid','$cid','$qid','$score')";
+$result=mysql_query($query1); 
+mysql_error();
 ?>
      
-           
- 
-            <fieldset id="actions">
-                
-             
-                      
-             
-                  </fieldset>
+    </table>       
+    
+   <h4><?php echo $total_score;?>/<?php echo $max_score;?> </h4>
+
+             <a href="course.php?c=<?php echo $cid;?>&quizzes"> Go Back to Quizzes</a>
+
                </form>
  
  </div> 

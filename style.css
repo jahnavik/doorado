@@ -22,6 +22,14 @@ margin-left: 5%;
 margin-top: 50px;
 width: 90%;
 }
+#row{
+position: absolute;
+margin-right: 5%;
+margin-left: 15%;
+margin-top: 50px;
+width: 10%;
+
+}
 #feature-image
 {
 position: relative;
@@ -119,4 +127,47 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 	top: 100px;
 	padding: 5px;
 	text-decoration: none;
+}
+#hor-zebra
+{
+	font: 14px Verdana, Geneva, Arial, Helvetica, sans-serif;
+
+	width: 1330px;
+	text-align: left;
+	border-collapse: collapse;
+	background: url('table-images/pattern.png');
+	line-height: 2em;
+}
+#hor-zebra th
+{
+    font-size: 14px;
+	font-weight: bold;
+	padding: 8px;
+	border-bottom: 1px solid #fff;
+	color:  #3a87ad;
+	text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    border-bottom: 1px solid #ccc;
+    background-color: #d9edf7;
+  
+}
+#hor-zebra td
+{
+	padding: 8px;
+	color: #669;
+	font-size: 12px;
+}
+#hor-zebra tr:nth-child(odd)
+{
+	background: #eee; 
+}
+
+#hor-zebra tr:nth-child(even) { 
+      background-color:  #fff;
+ }
+
+
+#hor-zebra tbody tr:hover td
+{
+	color: #39aea8;
+	
 }

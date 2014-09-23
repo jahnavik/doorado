@@ -5,7 +5,10 @@ include "cxn.php";
 session_start();
 $email = $_SESSION['email_ses'];
 $role = $_SESSION['role_ses'];
-
+if(isset($_SESSION['email_ses']))
+{
+  if($_SESSION['role_ses']=="student")
+      {
 $course_no=$_POST['course_id'];
 $course_name=$_POST['course_name'];
 $details = $_POST['details'];
@@ -31,4 +34,7 @@ header("location:instructor_course.php?c=$course_no");
 }
 else 
 {echo mysql_error();}
+}
+}
+else {}
 ?>

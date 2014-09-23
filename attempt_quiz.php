@@ -9,7 +9,7 @@ $role = $_SESSION['role_ses'];
 
 $qid=$_GET['c'];
 
-
+$cid=$_GET['d'];
 $query7="SELECT * FROM problem WHERE qid='$qid'";
 $result7=mysql_query($query7);
 $num_p=mysql_num_rows($result7);
@@ -50,8 +50,11 @@ video {
     width: 300px;
 }
     </style>
+  <link rel="stylesheet" type="text/css" href="js/wizmodal.css"> 
+         <script src="js/wizmodal.js" type="text/javascript"></script>
 
-
+</head>
+<body>
     <?php include "headbar.php"; ?>
     <div id="main" class="card" >
 
@@ -78,8 +81,8 @@ video {
 
      
 <div id="main" class="card" style="height:100%" >
-<div class="half" style="margin-right:28px; position:relative;">
- <form action="quiz_check.php" method="post" style="position:relative; left:0%; width:30% ; padding:20px;">
+<div  style="margin-right:28px; position:relative;">
+ <form action="quiz_check.php" method="post" style="position:relative; left:0%;  padding:20px;">
     
    
       <?php
@@ -89,16 +92,23 @@ while ($i<$num_p)
   $j=$i+1;
 $ques=mysql_result($result7,$i,"ques");
 $pid=mysql_result($result7,$i,"pid");
+$c1=mysql_result($result7, $i,"ans");
+$c2=mysql_result($result7, $i,"option2");
+$c3=mysql_result($result7, $i,"option3");
+$c4=mysql_result($result7, $i,"option4");
 $q='Q.'.$j.'  '.$ques;
 
+
 ?>
-             <fieldset id="inputs">
+             
                  <p> <?php echo $q;?></p> 
-                <input id="ans" name=<?php echo $pid;?> type="text"  class="form-control" placeholder="Answer" required>
-            </fieldset>
-                     <div id=err style=" width: 300px; height: 10px; align : left; color: #C00; font-weight:normal;  line-height: 1; font: 14px/1.5em Verdana, Geneva, Arial, Helvetica, sans-serif;  ">
-             </div>
-      <?php 
+                <input  name=<?php echo $pid;?> type="radio"   value="<?php echo $c1;?>"> <?php echo $c1;?> <br>
+                <input  name=<?php echo $pid;?> type="radio" value="<?php echo $c2;?>" ><?php echo $c2;?><br>
+                <input  name=<?php echo $pid;?> type="radio" value="<?php echo $c3;?>" ><?php echo $c3;?><br>
+                <input name=<?php echo $pid;?> type="radio"  value="<?php echo $c4;?>" ><?php echo $c4;?><br>
+                 <input type="hidden" name="cid" value="<?php echo $cid; ?>">
+      
+            <?php 
  $i++;
 }
 ?>

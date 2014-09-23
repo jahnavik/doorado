@@ -6,10 +6,6 @@ session_start();
 $email = $_SESSION['email_ses'];
 $role = $_SESSION['role_ses'];
 
-
-
-
-
 $rand=rand(11,500000);
 ?>
 <!DOCTYPE html>
@@ -60,7 +56,17 @@ video {
     
     <fieldset id="inputs">
     <input id="Course_id"  name="course_id" type="text" class="form-control" placeholder="Course No." autofocus required> <br>
-    <input id="Course_name"  name="course_name" type="text"  class="form-control" placeholder="Course Name" required><br><br>
+    <input id="Course_name"  name="course_name" type="text"  class="form-control" placeholder="Course Name" required><br>
+  <!-- <select name="Day" style="height:40px; "><br>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+    <option value="Sunday">Sunday</option>
+    </select><br><br>  -->
+   
     <input id="Work" name="work" type="text"  class="form-control" placeholder="Working Hours /Day/Week" required><br>
     <input id="Language"  name="language" type="text"  class="form-control" placeholder="Course Language" required><br>
     <input id="fee"  name="fee" type="text"  class="form-control" placeholder="Course Fee in INR" required><br>
