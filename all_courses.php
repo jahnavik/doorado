@@ -9,8 +9,23 @@ $tbl_name="courses";
 $query="SELECT * FROM $tbl_name";
 $result=mysql_query($query);
 $num=mysql_num_rows($result);
+if(isset($_SESSION['email_ses']))
+{
+  if($_SESSION['role_ses']=="student")
+      {
+$sql5="SELECT * FROM users WHERE email='$email' ";
+$result5=mysql_query($sql5);
 
-
+      $row5=mysql_fetch_assoc($result5);
+      $s_id=$row5['id'];
+      
+ }
+  else {
+   
+  }
+     
+     }
+ 
 
 $rand=rand(11,500000);
 ?>
@@ -46,7 +61,12 @@ while ($i<$num)
 $c_id=mysql_result($result,$i,"cid");
 $course_name=mysql_result($result,$i,"name");
 $course_detail=mysql_result($result,$i,"details");
-
+$fee=mysql_result($result,$i,"fee");
+$language=mysql_result($result,$i,"language");
+$work=mysql_result($result,$i,"hours");
+$query4="SELECT * FROM student WHERE sid='$s_id' AND cid='$c_id'";
+$result4=mysql_query($query4);
+$num_x=mysql_num_rows($result4);
  ?>
   <div id="main" class="card" >
 <div class="half" style="margin-right:28px; position:relative;">
@@ -54,10 +74,10 @@ $course_detail=mysql_result($result,$i,"details");
  <p> <?php echo $course_detail; ?></p>
  </div> 
  <div class="half" style="margin-right:28px; top:60px; position:relative;">
-<button class="btn btn-primary" style=" position:absolute; width:20%; right:3%;" > Join</button>
-<img src="icon/cal.png" width="15"/> January – April 2014  <br>
-<img src="icon/clock.png" width="15"/> 3-5 hours of work/day <br>
-<img src="icon/globe.png" width="15"/> English
+<a href="course_join.php?c=<?php echo $c_id;?>" class="btn btn-primary" style=" position:absolute; width:20%; right:3%;" ><?php if($num_x==1) {echo 'Leave '; } else {echo 'Join ';} ?> </a>
+<img src="icon/cal.png" width="15"/><?php echo $fee; ?><br>
+<img src="icon/clock.png" width="15"/> <?php echo $work; ?><br>
+<img src="icon/globe.png" width="15"/> <?php echo $language; ?>
 
  </div>  
     </div>
