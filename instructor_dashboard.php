@@ -101,7 +101,7 @@ $c_detail=mysql_result($result2,$i,"details");
 $i++;
 }
 ?> 
- <a href="#">+ Add New Course</a> <br>
+ <a href="new_course.php">+ Add New Course</a> <br>
    </div>
     <a name="deadline"></a>
     <div id="main" class="card" style="margin-top:20px;">
