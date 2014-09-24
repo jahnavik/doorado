@@ -58,15 +58,49 @@ if(isset($_SESSION['email_ses']))
 
          <div id="main-slider" class="owl-carousel">
 
- <div><img src="images/images.jpeg" style="width:100%;" /> </div>
-  <div><img src="images/images2.jpeg" style="width:100%;" /></div>
-  <div> <img src="images/index.jpeg" style="width:100%;" /> </div>
+ <div><img src="images/index.jpg" style="width:100%;" /> </div>
+  <div> <img src="images/image5.jpg" style="width:100%;" /> </div>
+ 
+  <div><img src="images/images.jpg" style="width:100%;" /></div>
   
   
   
 
 </div>
       </div>
+
+
+ <div class="overlay_modal" id="signup_modal">
+ <div class="overlay_modal_body">
+<center>Sign Up for a new Doorado Account</center>
+<form action="signup.php" method="post" style="position:absolute; left:35%; width:30% ; top:150px">
+    <fieldset id="inputs">
+        <input id="name" name="name" type="text" class="form-control" placeholder="Name" autofocus required>
+                <input id="username" name="email" type="text" class="form-control" placeholder="Email" autofocus required>   
+                <input id="password" name="password" type="password"  class="form-control" placeholder="Password" required>
+        <center> Join As: </center>
+<center> <select name="role">
+  <option  value="student">Student</option>
+  <option  value="teacher">Teacher</option>
+</select> </center>
+    </fieldset> 
+  
+ <div id=err style=" width: 300px; height: 10px; align : left; color: #C00; font-weight:normal;  line-height: 1; font: 14px/1.5em Verdana, Geneva, Arial, Helvetica, sans-serif;  ">
+            
+    
+
+   </div>
+  
+  <fieldset id="actions">
+         <center> <input  type="submit" id="submit"  class="btn btn-danger" value="Sign Up"> </center>
+    </fieldset>
+</form>         
+  
+ </div>
+ </div>   
+
+
+      
 <div class="overlay_modal" id="login_modal">
   <div class="overlay_modal_body">
  <center>Login to your Doorado Account</center>
@@ -92,7 +126,7 @@ if(isset($_SESSION['email_ses']))
           echo '<p id="invalid"  summary="datapass"></p>';
           echo "Please enter Username or Password.";
         }
-      ?>    
+        ?>    
 
             </div>
  
@@ -140,6 +174,7 @@ if(isset($_SESSION['email_ses']))
 
   </div>
    </div>
+
 </div>
 
   </form>
